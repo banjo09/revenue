@@ -1,19 +1,21 @@
-import { useState } from 'react'
-import { Box, Button, Heading, VStack } from '@chakra-ui/react'
-import './App.css'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Dashboard } from "./components/Dashboard/Dashboard";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+});
 
 function App() {
-
   return (
-    <>
-      <VStack minH="100vh" justify="center" bg="gray.50">
-        <Box textAlign="center">
-          <Heading mb={4}>Welcome to Chakra UI v3 + Vite ⚡</Heading>
-          <Button colorScheme="blue">Get Started</Button>
-        </Box>
-      </VStack>
-    </>
-  )
+    <QueryClientProvider client={queryClient}>
+      <Dashboard />
+    </QueryClientProvider>
+  );
 }
 
-export default App
+export default App;
