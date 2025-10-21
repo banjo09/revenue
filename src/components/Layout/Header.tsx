@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Avatar, Menu, Icon } from "@chakra-ui/react";
+import { Box, Button, IconButton, Avatar, Menu, Icon, Image } from "@chakra-ui/react";
 import { House, ChartColumnIncreasing, WalletMinimal, Users, LayoutGrid, Bell, MessageSquare, Menu as MenuIcon } from "lucide-react";
 import { useState } from "react";
 import { NavTab } from "../../types/enums";
@@ -36,13 +36,17 @@ export const Header = ({ user }: HeaderProps) => {
       py={4}
     >
       <Box display="flex" alignItems="center" justifyContent="space-between">
-        {/* Logo */}
-        <Box fontWeight="bold" fontSize="2xl" mr={8}>
-          |||
+        <Box mr={8}>
+          <Image
+            src="/mainstack-logo.png"
+            alt="Company Logo"
+            boxSize={{ base: '1.6rem', md: '2.0rem', lg: '2.3rem' }}
+            objectFit="cover"
+          />
         </Box>
 
         {/* Navigation Tabs */}
-        <Box display="flex" gap={2} flex={1}>
+        <Box display="flex" gap={2} flex={1} justifyContent='center'>
           {tabs.map((tab) => (
             <Box key={tab.id} position="relative">
               {tab.id === NavTab.APPS ? (
@@ -59,7 +63,7 @@ export const Header = ({ user }: HeaderProps) => {
                         bg: activeTab === tab.id ? "black" : "gray.100",
                       }}
                       borderRadius="full"
-                      px={4}
+                      px={{ base: 1.5, md: 2.5, lg: 4 }}
                       py={2}
                       fontWeight="medium"
                       fontSize="sm"
