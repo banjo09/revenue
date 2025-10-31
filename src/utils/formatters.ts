@@ -2,7 +2,7 @@ import type { TransactionStatus } from "../types/enums";
 
 export const formatCurrency = (amount: number): string => {
   return `USD ${amount.toLocaleString("en-US", {
-    minimumFractionDigits: 2,
+    minimumFractionDigits: 0,
     maximumFractionDigits: 2,
   })}`;
 };

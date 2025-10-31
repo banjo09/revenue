@@ -26,11 +26,20 @@ export interface RevenueDataPoint {
 export interface Transaction {
   id: string;
   title: string;
-  customer: string;
+  // customer: string;
   amount: number;
   date: string;
   status: TransactionStatus;
+  payment_reference: string;
   type: TransactionType;
+  metadata: {
+    name: string;
+    type: string;
+    email: string;
+    quantity: number;
+    country: string;
+    product_name: string;
+  };
 }
 
 // App types
