@@ -1,7 +1,7 @@
 import { Box, Text, Badge, Circle, Icon } from "@chakra-ui/react";
-import { CheckCheck, MoveDiagonal } from "lucide-react";
+import { CheckCheck, MoveDiagonal, MoveDownLeft, MoveUpRight } from "lucide-react";
 import { formatCurrency, formatDate } from "../../utils/formatters";
-import { TransactionStatus } from "../../types/enums";
+import { TransactionStatus, TransactionType } from "../../types/enums";
 import type { Transaction } from "../../types/schema";
 
 interface TransactionItemProps {
@@ -9,82 +9,100 @@ interface TransactionItemProps {
 }
 
 export const TransactionItem = ({ transaction }: TransactionItemProps) => {
+  console.log('transaction', transaction)
   const isSuccessful = transaction.status === TransactionStatus.SUCCESSFUL;
   const isPending = transaction.status === TransactionStatus.PENDING;
+  const withdrawalType = transaction.type === TransactionType.WITHDRAWAL;
+  const depositType = transaction.type === TransactionType.DEPOSIT;
+
 
   return (
     <Box
       display="flex"
       alignItems="center"
       justifyContent="space-between"
-      py={4}
-      borderBottom="1px solid"
-      borderColor="gray.100"
-      _hover={{ bg: "gray.50" }}
-      transition="background 0.2s"
-      px={4}
-      borderRadius="md"
+      py={5}
+      // borderBottom="1px solid"
+      // borderColor="gray.100"
+      _hover={{ bg: "gray.25" }}
+      transition="background 0.15s"
+      px={0}
     >
       {/* Left Side: Icon + Details */}
       <Box display="flex" alignItems="center" gap={4}>
         <Circle
-          size="40px"
-          bg={isSuccessful ? "green.50" : "orange.50"}
-          color={isSuccessful ? "green.600" : "orange.600"}
+          size="38px"
+          bg={depositType ? "green.100" : "#F9E3E0"}
+          color={depositType ? "green.700" : "#961100"}
         >
           <Icon>
-            {isSuccessful ? (
-              <CheckCheck size={20} />
+            {depositType ? (
+              <MoveDownLeft size={18} strokeWidth={1.2} />
             ) : (
-              <MoveDiagonal size={20} />
+              <MoveUpRight size={18} strokeWidth={1.2} />
             )}
           </Icon>
         </Circle>
 
         <Box>
-          <Text fontWeight="semibold" fontSize="sm" mb={1}>
-            {transaction.title}
+          <Text fontWeight="medium" fontSize="sm" mb={1} color="gray.900" textTransform="capitalize">
+            {transaction?.metadata?.product_name || transaction?.metadata?.type || "Cash withdrawal"}
           </Text>
-          <Text fontSize="sm" color="gray.600">
-            {transaction.customer}
-          </Text>
-          {!isSuccessful && (
-            <Badge
-              bg={isPending ? "orange.100" : "red.100"}
-              color={isPending ? "orange.700" : "red.700"}
-              fontSize="xs"
-              px={2}
-              py={0.5}
-              borderRadius="full"
-              mt={1}
+          <Box display="flex" alignItems="center" gap={2}>
+            <Text
+              fontSize="sm"
+              textTransform="capitalize"
+              color={
+                !!transaction?.metadata?.name ? "gray.600"
+                  : isSuccessful ? "green.600"
+                    : transaction.status === TransactionStatus.PENDING ? "orange.700" : "red.700"
+              }
             >
-              {transaction.status === TransactionStatus.PENDING
-                ? "Pending"
-                : "Failed"}
-            </Badge>
-          )}
-          {isSuccessful && transaction.customer === "Successful" && (
-            <Badge
-              bg="green.100"
-              color="green.700"
-              fontSize="xs"
-              px={2}
-              py={0.5}
-              borderRadius="full"
-              mt={1}
-            >
-              Successful
-            </Badge>
-          )}
+              {
+                !!transaction?.metadata?.name ? transaction?.metadata?.name
+                  : isSuccessful ? "Successful"
+                    : transaction.status === TransactionStatus.PENDING
+                      ? "Pending" : "Failed"
+              }
+            </Text>
+            {/* {!isSuccessful && (
+              <Badge
+                bg={isPending ? "orange.100" : "red.100"}
+                color={isPending ? "orange.700" : "red.700"}
+                fontSize="2xs"
+                px={2}
+                py={0.5}
+                borderRadius="full"
+                fontWeight="medium"
+              >
+                {transaction.status === TransactionStatus.PENDING
+                  ? "Pending"
+                  : "Failed"}
+              </Badge>
+            )}
+            {isSuccessful && (
+              <Badge
+                bg="green.100"
+                color="green.700"
+                fontSize="2xs"
+                px={2}
+                py={0.5}
+                borderRadius="full"
+                fontWeight="medium"
+              >
+                Successful
+              </Badge>
+            )} */}
+          </Box>
         </Box>
       </Box>
 
       {/* Right Side: Amount + Date */}
       <Box textAlign="right">
-        <Text fontWeight="semibold" fontSize="sm" mb={1}>
+        <Text fontWeight="semibold" fontSize="sm" mb={1} color="gray.900">
           {formatCurrency(transaction.amount)}
         </Text>
-        <Text fontSize="sm" color="gray.600">
+        <Text fontSize="sm" color="gray.500">
           {formatDate(transaction.date)}
         </Text>
       </Box>

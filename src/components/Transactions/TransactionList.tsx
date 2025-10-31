@@ -1,5 +1,5 @@
 import { Box, Heading, Text, Button, Badge, Icon } from "@chakra-ui/react";
-import { Filter, HardDriveDownload } from "lucide-react";
+import { Filter, HardDriveDownload, ChevronDown, Download } from "lucide-react";
 import { useState, useMemo } from "react";
 import { TransactionItem } from "./TransactionItem";
 import { FilterDrawer } from "./FilterDrawer";
@@ -70,56 +70,86 @@ export const TransactionList = ({ transactions }: TransactionListProps) => {
   return (
     <Box>
       {/* Header */}
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={6}>
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        // alignItems="flex-start"
+        alignItems="center"
+        mb={1}
+        pb={3}
+        borderBottom="1px solid"
+        borderColor="gray.100"
+      >
         <Box>
-          <Heading size="lg" mb={1}>
+          <Heading size="xl" mb={1} fontWeight="bold" letterSpacing="-0.01em">
             {filteredTransactions.length} Transactions
           </Heading>
-          <Text fontSize="sm" color="gray.600">
+          <Text fontSize="sm" color="gray.500" fontWeight="normal">
             Your transactions for the last 7 days
           </Text>
         </Box>
 
         <Box display="flex" gap={3}>
           <Button
-            variant="outline"
+            variant="ghost"
             borderRadius="full"
             onClick={() => setIsFilterOpen(true)}
             position="relative"
+            color="gray.700"
+            bg='#EFF1F6'
+            px={5}
+            py={2.5}
+            fontSize="xs"
+            fontWeight="semibold"
           >
-            <Icon mr={2}>
-              <Filter size={16} />
-            </Icon>
             Filter
+            <Icon>
+              <ChevronDown size={20} strokeWidth={1.5} />
+            </Icon>
             {activeFilterCount > 0 && (
               <Badge
                 position="absolute"
-                top="-8px"
-                right="-8px"
+                top="-6px"
+                right="-6px"
                 bg="black"
                 color="white"
                 borderRadius="full"
-                fontSize="xs"
-                px={2}
+                fontSize="2xs"
+                px={1.5}
                 py={0.5}
+                minW="18px"
+                height="18px"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
               >
                 {activeFilterCount}
               </Badge>
             )}
           </Button>
 
-          <Button variant="outline" borderRadius="full">
-            <Icon mr={2}>
-              <HardDriveDownload size={16} />
-            </Icon>
+          <Button
+            variant="solid"
+            borderRadius="full"
+            color="gray.700"
+            bg='#EFF1F6'
+            px={5}
+            py={2.5}
+            fontSize="xs"
+            fontWeight="semibold"
+          >
             Export list
+            <Icon
+              as={Download}
+              boxSize={{ base: '14px', md: '14px', lg: '14px' }}
+            />
           </Button>
         </Box>
       </Box>
 
       {/* Transaction Items */}
       {filteredTransactions.length > 0 ? (
-        <Box>
+        <Box pb={'7rem'}>
           {filteredTransactions.map((transaction) => (
             <TransactionItem key={transaction.id} transaction={transaction} />
           ))}

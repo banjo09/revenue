@@ -1,4 +1,4 @@
-import { Box, IconButton, Icon, Tooltip as ChakraTooltip } from "@chakra-ui/react";
+import { Box, IconButton, Icon, Tooltip as ChakraTooltip, Image } from "@chakra-ui/react";
 import { Link, FileText, FolderOpenDot, Users } from "lucide-react";
 
 export const Sidebar = () => {
@@ -17,9 +17,11 @@ export const Sidebar = () => {
       transform="translateY(-50%)"
       zIndex={100}
       bg="white"
-      borderRadius="0 12px 12px 0"
+      // borderRadius="0 12px 12px 0"
+      borderRadius="12px"
       boxShadow="sm"
       p={2}
+      ml={4}
     >
       <Box display="flex" flexDirection="column" gap={2}>
         {sidebarItems.map((item) => (
@@ -37,6 +39,7 @@ export const Sidebar = () => {
                 <Icon color={item.color}>
                   <item.icon size={20} />
                 </Icon>
+                <Image />
               </IconButton>
             </ChakraTooltip.Trigger>
             <ChakraTooltip.Positioner>
