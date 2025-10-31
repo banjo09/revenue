@@ -32,40 +32,43 @@ export const BalanceSection = ({ wallet }: BalanceSectionProps) => {
   ];
 
   return (
-    <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={8}>
+    <Box display="flex" justifyContent="space-between" alignItems="flex-start" mb={6}>
       {/* Available Balance */}
-      <Box>
-        <Text fontSize="sm" color="gray.600" mb={2}>
+      <Box flex={1}>
+        <Text fontSize="sm" color="gray.500" mb={2} fontWeight="normal">
           Available Balance
         </Text>
-        <Heading size="2xl" mb={4} fontWeight="bold">
-          {formatCurrency(wallet?.availableBalance || 0)}
+        <Heading size="3xl" mb={5} fontWeight="bold" letterSpacing="-0.02em">
+          124,766.00
+          {/* {formatCurrency(wallet?.availableBalance || 0)} */}
         </Heading>
         <Button
           bg="black"
           color="white"
           _hover={{ bg: "gray.800" }}
           borderRadius="full"
-          px={8}
-          size="lg"
+          px={10}
+          py={6}
+          fontSize="sm"
+          fontWeight="semibold"
         >
           Withdraw
         </Button>
       </Box>
 
       {/* Metrics */}
-      <Box display="flex" gap={8}>
+      <Box display="flex" flexDirection="column" gap={6} minW="300px">
         {metrics.map((metric) => (
           <Box key={metric.label}>
-            <Box display="flex" alignItems="center" gap={2} mb={2}>
-              <Text fontSize="sm" color="gray.600">
+            <Box display="flex" alignItems="center" gap={2} mb={1.5}>
+              <Text fontSize="sm" color="gray.500" fontWeight="normal">
                 {metric.label}
               </Text>
               <ChakraTooltip.Root positioning={{ placement: "top" }}>
                 <ChakraTooltip.Trigger asChild>
-                  <Box cursor="pointer">
+                  <Box cursor="pointer" display="flex" alignItems="center">
                     <Icon color="gray.400">
-                      <Info size={14} />
+                      <Info size={13} />
                     </Icon>
                   </Box>
                 </ChakraTooltip.Trigger>
@@ -76,7 +79,7 @@ export const BalanceSection = ({ wallet }: BalanceSectionProps) => {
                 </ChakraTooltip.Positioner>
               </ChakraTooltip.Root>
             </Box>
-            <Text fontSize="xl" fontWeight="bold">
+            <Text fontSize="2xl" fontWeight="bold" letterSpacing="-0.01em">
               {formatCurrency(metric.value)}
             </Text>
           </Box>

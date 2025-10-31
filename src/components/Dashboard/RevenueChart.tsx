@@ -18,41 +18,53 @@ export const RevenueChart = () => {
   }));
 
   return (
-    <Box mb={8} bg="white" borderRadius="lg" p={6}>
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={formattedData}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-          <XAxis
-            dataKey="formattedDate"
-            stroke="#999"
-            fontSize={12}
-            tickLine={false}
-          />
-          <YAxis stroke="#999" fontSize={12} tickLine={false} />
-          <Tooltip
-            contentStyle={{
-              backgroundColor: "white",
-              border: "1px solid #e0e0e0",
-              borderRadius: "8px",
-              padding: "8px 12px",
-            }}
-            formatter={(value: number) => [`$${value.toLocaleString()}`, "Revenue"]}
-          />
-          <Line
-            type="monotone"
-            dataKey="revenue"
-            stroke="#FF6B35"
-            strokeWidth={2}
-            dot={false}
-            activeDot={{ r: 6, fill: "#FF6B35" }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-      <Box display="flex" justifyContent="space-between" mt={4} px={4}>
-        <Text fontSize="sm" color="gray.600">
+    <Box mb={8} bg="white" borderRadius="12px" p={0} overflow="hidden">
+      <Box px={6} pt={6} pb={2}>
+        <ResponsiveContainer width="100%" height={280}>
+          <LineChart data={formattedData} margin={{ top: 5, right: 5, left: -20, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="0" stroke="#f5f5f5" vertical={false} />
+            <XAxis
+              dataKey="formattedDate"
+              stroke="#999"
+              fontSize={11}
+              tickLine={false}
+              axisLine={false}
+              dy={10}
+            />
+            <YAxis
+              stroke="#999"
+              fontSize={11}
+              tickLine={false}
+              axisLine={false}
+              tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
+            />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: "white",
+                border: "1px solid #e5e5e5",
+                borderRadius: "8px",
+                padding: "8px 12px",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+              }}
+              formatter={(value: number) => [`$${value.toLocaleString()}`, "Revenue"]}
+              labelStyle={{ fontSize: "12px", color: "#666" }}
+            />
+            <Line
+              type="monotone"
+              dataKey="revenue"
+              stroke="#FF6B35"
+              strokeWidth={2.5}
+              dot={false}
+              activeDot={{ r: 5, fill: "#FF6B35", strokeWidth: 0 }}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </Box>
+      <Box display="flex" justifyContent="space-between" px={6} pb={4} pt={2}>
+        <Text fontSize="xs" color="gray.500" fontWeight="normal">
           Apr 1, 2022
         </Text>
-        <Text fontSize="sm" color="gray.600">
+        <Text fontSize="xs" color="gray.500" fontWeight="normal">
           Apr 30, 2022
         </Text>
       </Box>

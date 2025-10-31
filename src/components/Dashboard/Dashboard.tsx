@@ -7,6 +7,7 @@ import { TransactionList } from "../Transactions/TransactionList";
 import { useUser } from "../../hooks/useUser";
 import { useWallet } from "../../hooks/useWallet";
 import { useTransactions } from "../../hooks/useTransactions";
+import { AppsDropdown } from "../Layout/AppsDropdown";
 
 export const Dashboard = () => {
   const { data: user } = useUser();
@@ -14,11 +15,16 @@ export const Dashboard = () => {
   const { data: transactions } = useTransactions();
 
   return (
-    <Box minH="100vh" bg="gray.50">
+    <Box minH="100vh" bg="#fafafa">
       <Header user={user || null} />
       <Sidebar />
-      
-      <Container maxW="1400px" py={8} px={8}>
+
+      <Container
+        maxW="1300px"
+        py={10}
+        justifyContent='center'
+        justifySelf={'center'}
+      >
         <BalanceSection wallet={wallet || null} />
         <RevenueChart />
         <TransactionList transactions={transactions || []} />
