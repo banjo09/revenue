@@ -20,13 +20,13 @@ export const Dashboard = () => {
       <Sidebar />
 
       <Container
-        maxW="1300px"
-        py={10}
+        maxW="1170px"
+        py={16}
         justifyContent='center'
         justifySelf={'center'}
       >
         <BalanceSection wallet={wallet || null} />
-        <RevenueChart />
+        {/* <RevenueChart /> */}
         <TransactionList transactions={transactions || []} />
       </Container>
     </Box>
