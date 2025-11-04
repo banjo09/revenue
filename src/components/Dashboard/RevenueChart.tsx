@@ -18,26 +18,28 @@ export const RevenueChart = () => {
   }));
 
   return (
-    <Box mb={8} bg="white" borderRadius="12px" p={0} overflow="hidden">
+    // <Box mb={8} bg="white" borderRadius="12px" p={0} overflow="hidden">
+    <Box mb={8} borderRadius="12px" p={0} overflow="hidden">
       <Box px={6} pt={6} pb={2}>
-        <ResponsiveContainer width="100%" height={280}>
+        {/* <ResponsiveContainer width="100%" height={280}> */}
+        <ResponsiveContainer width="100%" height={220}>
           <LineChart data={formattedData} margin={{ top: 5, right: 5, left: -20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="0" stroke="#f5f5f5" vertical={false} />
-            <XAxis
+            {/* <XAxis
               dataKey="formattedDate"
               stroke="#999"
               fontSize={11}
               tickLine={false}
               axisLine={false}
               dy={10}
-            />
-            <YAxis
+            /> */}
+            {/* <YAxis
               stroke="#999"
               fontSize={11}
               tickLine={false}
               axisLine={false}
               tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
-            />
+            /> */}
             <Tooltip
               contentStyle={{
                 backgroundColor: "white",
