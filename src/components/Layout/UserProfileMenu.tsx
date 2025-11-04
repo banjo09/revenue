@@ -1,5 +1,8 @@
 import { Menu, Portal, Box, Text, Icon, Avatar, Separator } from "@chakra-ui/react";
-import { Settings, ShoppingCart, Gift, Puzzle, Bug, ArrowDownWideNarrow, LogOut } from "lucide-react";
+import {
+  Settings, ShoppingCart, Gift, Puzzle,
+  Bug, ArrowDownWideNarrow, LogOut, ScrollText, LayoutGrid
+} from "lucide-react";
 import type { User } from "../../types/schema";
 
 interface UserProfileMenuProps {
@@ -9,9 +12,9 @@ interface UserProfileMenuProps {
 export const UserProfileMenu = ({ user }: UserProfileMenuProps) => {
   const menuItems = [
     { id: "settings", label: "Settings", icon: Settings },
-    { id: "purchase-history", label: "Purchase History", icon: ShoppingCart },
+    { id: "purchase-history", label: "Purchase History", icon: ScrollText },
     { id: "refer-earn", label: "Refer and Earn", icon: Gift },
-    { id: "integrations", label: "Integrations", icon: Puzzle },
+    { id: "integrations", label: "Integrations", icon: LayoutGrid },
     { id: "report-bug", label: "Report Bug", icon: Bug },
     { id: "switch-account", label: "Switch Account", icon: ArrowDownWideNarrow },
   ];
@@ -28,7 +31,7 @@ export const UserProfileMenu = ({ user }: UserProfileMenuProps) => {
           borderRadius='1rem'
         >
           {/* User Info */}
-          <Box display={"flex"} flexDirection="row" alignItems="center" pt={0} pb={0}>
+          <Box display={"flex"} flexDirection="row" alignItems="center" pt={0} px={2.5}>
             <Avatar.Root
               size={{ base: "2xs", md: "2xs", lg: "xs" }}
               backgroundImage="linear-gradient(to bottom, #5C6670, #131316)"
@@ -57,13 +60,13 @@ export const UserProfileMenu = ({ user }: UserProfileMenuProps) => {
               value={item.id}
               cursor="pointer"
               borderRadius="md"
-              px={3}
+              px={2.5}
               py={3.0}
               _hover={{ bg: "gray.50" }}
             >
               <Box display="flex" alignItems="center" gap={3}>
                 <Icon color="gray.600">
-                  <item.icon size={18} />
+                  <item.icon size={13} />
                 </Icon>
                 <Text fontSize="xs" fontWeight="semibold">{item.label}</Text>
               </Box>
@@ -77,16 +80,16 @@ export const UserProfileMenu = ({ user }: UserProfileMenuProps) => {
             value="signout"
             cursor="pointer"
             borderRadius="md"
-            px={3}
+            px={2.5}
             py={2.5}
             _hover={{ bg: "red.50" }}
-            color="red.600"
+          // color="red.600"
           >
             <Box display="flex" alignItems="center" gap={3}>
               <Icon>
-                <LogOut size={18} />
+                <LogOut size={13} />
               </Icon>
-              <Text fontSize="sm">Sign Out</Text>
+              <Text fontSize="xs" fontWeight="semibold">Sign Out</Text>
             </Box>
           </Menu.Item>
         </Menu.Content>
