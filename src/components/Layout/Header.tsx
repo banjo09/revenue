@@ -4,7 +4,7 @@ import {
 } from "@chakra-ui/react";
 import {
   House, ChartColumnIncreasing, WalletMinimal, MessageSquareText, Banknote,
-  Users, LayoutGrid, Bell, MessageSquare, Menu as MenuIcon, SquareKanban
+  Users, LayoutGrid, Bell, ChevronDown, Menu as MenuIcon, SquareKanban
 } from "lucide-react";
 import { useState } from "react";
 import { NavTab } from "../../types/enums";
@@ -157,6 +157,7 @@ export const Header = ({ user }: HeaderProps) => {
                       py={2}
                       fontWeight="medium"
                       fontSize={{ md: "xs", lg: "sm" }}
+                      onClick={() => setActiveTab(tab.id)}
                     >
                       {/* <Icon mr={{ md: 0.5, lg: 2 }}>
                         <tab.icon
@@ -167,11 +168,25 @@ export const Header = ({ user }: HeaderProps) => {
 
                       <Icon
                         as={tab.icon}
-                        color="gray.600"
+                        // color="gray.600"
+                        color={activeTab === tab.id ? "white" : "gray.600"}
                         boxSize={{ md: '14px', lg: '16px' }}
                         mr={{ md: 0.1, lg: 0.25 }}
                       />
                       {tab.label}
+                      {
+                        activeTab === tab.id && <>
+                          <Box
+                            width="1px"
+                            bg="gray.300"
+                            height={10}
+                            mx={2}
+                            borderRadius="full"
+                          />
+                          Link in Bio
+                          <ChevronDown />
+                        </>
+                      }
                     </Button>
                   </Menu.Trigger>
                   <AppsDropdown />
@@ -267,11 +282,12 @@ export const Header = ({ user }: HeaderProps) => {
                   >
                     <Avatar.Fallback>{user?.avatar || "OJ"}</Avatar.Fallback>
                   </Avatar.Root>
-                  <IconButton
-                    variant="ghost"
-                    aria-label="Menu"
-                    size="xs"
-                    borderRadius="full"
+                  <Box
+                    // variant="ghost"
+                    // aria-label="Menu"
+                    // size="xs"
+                    // borderRadius="full"
+                    px={1.5}
                   >
                     <Icon>
                       <MenuIcon
@@ -279,7 +295,14 @@ export const Header = ({ user }: HeaderProps) => {
                         size={'12px'} strokeWidth={1.0}
                       />
                     </Icon>
-                  </IconButton>
+                  </Box>
+                  {/* <Icon
+                    as={MenuIcon}
+                    boxSize="12px"
+                    strokeWidth={1.0}
+                    ml={1}
+                    color="gray.600"
+                  /> */}
                 </Box>
               </Menu.Trigger>
               <UserProfileMenu user={user} />
