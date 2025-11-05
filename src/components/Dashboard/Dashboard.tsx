@@ -13,6 +13,8 @@ export const Dashboard = () => {
   const { data: user } = useUser();
   const { data: wallet } = useWallet();
   const { data: transactions } = useTransactions();
+  // console.log('transactions', transactions)
+  // console.log('user', user)
 
   return (
     <Box minH="100vh" bg="#fafafa">
