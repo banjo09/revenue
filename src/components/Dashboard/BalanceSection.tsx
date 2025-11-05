@@ -12,22 +12,22 @@ export const BalanceSection = ({ wallet }: BalanceSectionProps) => {
   const metrics = [
     {
       label: "Ledger Balance",
-      value: wallet?.ledgerBalance || 0,
+      value: wallet?.ledger_balance || 0,
       tooltip: "Total balance in your ledger account",
     },
     {
       label: "Total Payout",
-      value: wallet?.totalPayout || 0,
+      value: wallet?.total_payout || 0,
       tooltip: "Total amount paid out to date",
     },
     {
       label: "Total Revenue",
-      value: wallet?.totalRevenue || 0,
+      value: wallet?.total_revenue || 0,
       tooltip: "Total revenue generated",
     },
     {
       label: "Pending Payout",
-      value: wallet?.pendingPayout || 0,
+      value: wallet?.pending_payout || 0,
       tooltip: "Amount pending for payout",
     },
   ];
@@ -47,8 +47,8 @@ export const BalanceSection = ({ wallet }: BalanceSectionProps) => {
               Available Balance
             </Text>
             <Heading size="3xl" fontWeight="bold" letterSpacing="-0.02em">
-              124,766.00
-              {/* {formatCurrency(wallet?.availableBalance || 0)} */}
+              {/* 124,766.00 */}
+              {formatCurrency(wallet?.balance || 0)}
             </Heading>
           </Box>
           <Button
@@ -86,7 +86,7 @@ export const BalanceSection = ({ wallet }: BalanceSectionProps) => {
                 {metric.label}
               </Text>
               <ChakraTooltip.Root positioning={{ placement: "top" }}>
-                <ChakraTooltip.Trigger asChild mr={{ base: 2, md: 8, lg: 12 }}>
+                <ChakraTooltip.Trigger asChild>
                   <Box
                     cursor="pointer"
                     display="flex"
@@ -99,7 +99,7 @@ export const BalanceSection = ({ wallet }: BalanceSectionProps) => {
                 </ChakraTooltip.Trigger>
                 <ChakraTooltip.Positioner>
                   <ChakraTooltip.Content>
-                    <Text fontSize="xs">{metric.tooltip}</Text>
+                    <Text fontSize="xs" p={1.5}>{metric.tooltip}</Text>
                   </ChakraTooltip.Content>
                 </ChakraTooltip.Positioner>
               </ChakraTooltip.Root>
