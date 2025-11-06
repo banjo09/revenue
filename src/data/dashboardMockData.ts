@@ -2,18 +2,18 @@ import { TransactionStatus, TransactionType } from "../types/enums";
 
 // Mock user data
 export const mockUser = {
-  name: "Olivier Jones",
+  first_name: "Olivier",
+  last_name: "Jones",
   email: "olivierjones@gmail.com",
   avatar: "OJ",
 };
 
-// Mock wallet data
 export const mockWallet = {
-  availableBalance: 120500.0,
-  ledgerBalance: 0.0,
-  totalPayout: 55080.0,
-  totalRevenue: 175580.0,
-  pendingPayout: 0.0,
+  balance: 0.0,
+  ledger_balance: 0.0,
+  total_payout: 0.0,
+  total_revenue: 0.0,
+  pending_payout: 0.0,
 };
 
 // Mock revenue chart data
@@ -101,30 +101,35 @@ export const mockApps = [
     name: "Link in Bio",
     description: "Manage your Link in Bio",
     icon: "link",
+    image: "/apps/bio.png",
   },
   {
     id: "store",
     name: "Store",
     description: "Manage your Store activities",
     icon: "store",
+    image: "/apps/store.png",
   },
   {
     id: "media-kit",
     name: "Media Kit",
     description: "Manage your Media Kit",
     icon: "media",
+    image: "/apps/media.png",
   },
   {
     id: "invoicing",
     name: "Invoicing",
     description: "Manage your Invoices",
     icon: "invoice",
+    image: "/apps/invoicing.png",
   },
   {
     id: "bookings",
     name: "Bookings",
     description: "Manage your Bookings",
     icon: "calendar",
+    image: "/apps/invoicing.png",
   },
 ];
 

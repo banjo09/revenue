@@ -2,18 +2,19 @@ import type { TransactionStatus, TransactionType } from "./enums";
 
 // User types
 export interface User {
-  name: string;
+  first_name: string;
+  last_name: string;
   email: string;
   avatar: string;
 }
 
 // Wallet types
 export interface Wallet {
-  availableBalance: number;
-  ledgerBalance: number;
-  totalPayout: number;
-  totalRevenue: number;
-  pendingPayout: number;
+  balance: number;
+  ledger_balance: number;
+  total_payout: number;
+  total_revenue: number;
+  pending_payout: number;
 }
 
 // Chart types
