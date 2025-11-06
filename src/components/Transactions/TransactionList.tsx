@@ -150,8 +150,11 @@ export const TransactionList = ({ transactions }: TransactionListProps) => {
       {/* Transaction Items */}
       {filteredTransactions.length > 0 ? (
         <Box pb={'7rem'}>
-          {filteredTransactions.map((transaction) => (
-            <TransactionItem key={transaction.id} transaction={transaction} />
+          {filteredTransactions.map((transaction, index) => (
+            <TransactionItem
+              key={transaction.payment_reference + transaction.date + index}
+              transaction={transaction}
+            />
           ))}
         </Box>
       ) : (

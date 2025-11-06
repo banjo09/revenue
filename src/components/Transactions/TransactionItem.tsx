@@ -9,7 +9,7 @@ interface TransactionItemProps {
 }
 
 export const TransactionItem = ({ transaction }: TransactionItemProps) => {
-  console.log('transaction', transaction)
+  // console.log('transaction', transaction)
   const isSuccessful = transaction.status === TransactionStatus.SUCCESSFUL;
   const isPending = transaction.status === TransactionStatus.PENDING;
   const withdrawalType = transaction.type === TransactionType.WITHDRAWAL;
