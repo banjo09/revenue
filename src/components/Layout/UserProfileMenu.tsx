@@ -42,7 +42,8 @@ export const UserProfileMenu = ({ user }: UserProfileMenuProps) => {
             </Avatar.Root>
             <Box px={3} py={3} mb={0}>
               <Text fontWeight="semibold" fontSize="sm" mb={0.5}>
-                {user?.name || "Olivier Jones"}
+                {user?.first_name || "Olivier"}{" "}
+                {user?.last_name || "Jones"}
               </Text>
               <Text fontSize="xs" color="gray.600">
                 {user?.email || "olivierjones@gmail.com"}
