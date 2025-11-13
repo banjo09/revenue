@@ -29,6 +29,9 @@ export const FilterDrawer = ({
     { id: DateFilterPreset.LAST_7_DAYS, label: "Last 7 days" },
     { id: DateFilterPreset.THIS_MONTH, label: "This month" },
     { id: DateFilterPreset.LAST_3_MONTHS, label: "Last 3 months" },
+    { id: DateFilterPreset.THIS_YEAR, label: "This year" },
+    { id: DateFilterPreset.LAST_YEAR, label: "Last year" },
+    { id: DateFilterPreset.ALL_TIME, label: "All time" },
   ];
 
   const transactionTypesFrameworks = createListCollection({
@@ -113,7 +116,23 @@ export const FilterDrawer = ({
             <Drawer.Body>
               {/* Quick Filters */}
               <Box mb={6} mt={5}>
-                <Box display="flex" justifyContent={'space-between'} flexWrap="wrap">
+                <Box
+                  // display="flex" justifyContent={'space-between'} flexWrap="wrap"
+                  display="flex"
+                  overflowX="auto"
+                  gap={3}
+                  py={2}
+                  px={1}
+                  css={{
+                    scrollbarWidth: "none", // Hide scrollbar (Firefox)
+                    msOverflowStyle: "none", // Hide scrollbar (IE)
+                  }}
+                // sx={{
+                //   "&::-webkit-scrollbar": {
+                //     display: "none", // Hide scrollbar (Chrome/Safari)
+                //   },
+                // }}
+                >
                   {presets.map((preset) => (
                     <Button
                       key={preset.id}
@@ -122,6 +141,7 @@ export const FilterDrawer = ({
                       px={4}
                       py={3}
                       borderRadius="full"
+                      flexShrink={0}
                       borderWidth={localFilters.preset === preset.id ? "0px" : "0.1px"}
                       bg={localFilters.preset === preset.id ? "black" : "white"}
                       color={localFilters.preset === preset.id ? "white" : "gray.700"}
