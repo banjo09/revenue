@@ -29,6 +29,9 @@ export const DateFilterPreset = {
   LAST_7_DAYS: "last_7_days",
   THIS_MONTH: "this_month",
   LAST_3_MONTHS: "last_3_months",
+  THIS_YEAR: "this_year",
+  LAST_YEAR: "last_year",
+  ALL_TIME: "all_time",
 } as const;
 
 export type DateFilterPreset =
