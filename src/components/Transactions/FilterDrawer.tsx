@@ -31,8 +31,6 @@ export const FilterDrawer = ({
     { id: DateFilterPreset.LAST_3_MONTHS, label: "Last 3 months" },
   ];
 
-
-
   const transactionTypesFrameworks = createListCollection({
     items: [
       { value: TransactionType.STORE_TRANSACTIONS, label: "Store Transactions" },
@@ -53,11 +51,13 @@ export const FilterDrawer = ({
     { id: TransactionType.REFER_AND_EARN, label: "Refer & Earn" },
   ];
 
-  const transactionStatuses = [
-    { id: TransactionStatus.SUCCESSFUL, label: "Successful" },
-    { id: TransactionStatus.PENDING, label: "Pending" },
-    { id: TransactionStatus.FAILED, label: "Failed" },
-  ];
+  const transactionStatusesFrameworks = createListCollection({
+    items: [
+      { value: TransactionStatus.SUCCESSFUL, label: "Successful" },
+      { value: TransactionStatus.PENDING, label: "Pending" },
+      { value: TransactionStatus.FAILED, label: "Failed" },
+    ],
+  })
 
   const handleTypeToggle = (type: TransactionType) => {
     setLocalFilters((prev) => ({
@@ -104,7 +104,7 @@ export const FilterDrawer = ({
                   borderRadius="full"
                 >
                   <Icon>
-                    <X size={20} />
+                    <X strokeWidth='0.08rem' />
                   </Icon>
                 </Button>
               </Box>
@@ -113,7 +113,7 @@ export const FilterDrawer = ({
             <Drawer.Body>
               {/* Quick Filters */}
               <Box mb={6} mt={5}>
-                <Box display="flex" gap={2} flexWrap="wrap">
+                <Box display="flex" justifyContent={'space-between'} flexWrap="wrap">
                   {presets.map((preset) => (
                     <Button
                       key={preset.id}
@@ -143,12 +143,13 @@ export const FilterDrawer = ({
                 <Text fontWeight="semibold" mb={2}>
                   Date Range
                 </Text>
-                <Box display="flex" gap={3}>
+                <Box display="flex" gap={1.5}>
                   <Box flex={1}>
                     <Input
                       type="date"
                       placeholder="17 Jul 2023"
                       size="md"
+
                       borderRadius="md"
                       px={3}
                     />
@@ -177,7 +178,7 @@ export const FilterDrawer = ({
                     value={selectedTypes}
                     onValueChange={(e) => setSelectedTypes(e.value)}
                     size="sm"
-                    width="320px"
+                  // width="320px"
                   >
                     <Select.HiddenSelect />
                     {/* <Select.Label>Transaction Type</Select.Label> */}
@@ -197,7 +198,7 @@ export const FilterDrawer = ({
                             <Select.Item
                               item={framework}
                               key={framework.value}
-                              p={2.5}
+                              p={3}
                               borderRadius="md"
                             // bg='red'
                             // asChild
@@ -219,7 +220,7 @@ export const FilterDrawer = ({
                                 // justifyContent="space-between"
                                 // px={3}
                                 // py={2}
-                                bg='purple.emphasized'
+                                // bg='purple.emphasized'
                                 // borderRadius="md"
                                 // cursor="pointer"
                                 // _hover={{ bg: "gray.100" }}
@@ -233,7 +234,6 @@ export const FilterDrawer = ({
                                     boxSize={4}
                                   /> : <Checkbox.Root
                                     checked={true}
-                                    // pointerEvents="inherit"
                                     cursor="pointer"
                                     size="sm"
                                   >
@@ -259,7 +259,63 @@ export const FilterDrawer = ({
                   Transaction Status
                 </Text>
                 <Box display="flex" flexDirection="column" gap={2}>
-                  {transactionStatuses.map((status) => (
+                  <Select.Root
+                    multiple
+                    collection={transactionStatusesFrameworks}
+                    value={selectedTypes}
+                    onValueChange={(e) => setSelectedTypes(e.value)}
+                    size="sm"
+                  >
+                    <Select.HiddenSelect />
+                    <Select.Control>
+                      <Select.Trigger>
+                        <Select.ValueText pl={3} placeholder="Transaction Status" />
+                      </Select.Trigger>
+                      <Select.IndicatorGroup pr={3}>
+                        <Select.Indicator />
+                      </Select.IndicatorGroup>
+                    </Select.Control>
+                    <Select.Positioner>
+                      <Select.Content px={2} py={2}>
+                        {transactionStatusesFrameworks.items.map((framework) => {
+                          const isSelected = selectedTypes.includes(framework.value);
+                          return (
+                            <Select.Item
+                              item={framework}
+                              key={framework.value}
+                              p={3}
+                              borderRadius="md"
+                            >
+                              <Box
+                                display="flex"
+                                alignItems="center"
+                                flex={1}
+                              >
+                                {
+                                  !isSelected ? <Icon
+                                    as={Square}
+                                    color={"gray.400"}
+                                    cursor="pointer"
+                                    boxSize={4}
+                                  /> : <Checkbox.Root
+                                    checked={true}
+                                    cursor="pointer"
+                                    size="sm"
+                                  >
+                                    <Checkbox.Control transition="all 0.15s ease-in-out" />
+                                  </Checkbox.Root>
+                                }
+                                <Text pl={2.5} fontSize="sm" color="gray.800">
+                                  {framework.label}
+                                </Text>
+                              </Box>
+                            </Select.Item>
+                          )
+                        })}
+                      </Select.Content>
+                    </Select.Positioner>
+                  </Select.Root>
+                  {/* {transactionStatusesFrameworks.map((status) => (
                     <Checkbox.Root
                       key={status.id}
                       checked={localFilters.transactionStatuses.includes(status.id)}
@@ -269,7 +325,7 @@ export const FilterDrawer = ({
                       <Checkbox.Control />
                       <Checkbox.Label fontSize="sm">{status.label}</Checkbox.Label>
                     </Checkbox.Root>
-                  ))}
+                  ))} */}
                 </Box>
               </Box>
             </Drawer.Body>
