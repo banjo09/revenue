@@ -4,7 +4,7 @@ import {
   Text, Checkbox, Input, Icon,
   Select, createListCollection, Portal
 } from "@chakra-ui/react";
-import { X } from "lucide-react";
+import { X, SquareCheck, Square } from "lucide-react";
 import { TransactionType, TransactionStatus, DateFilterPreset } from "../../types/enums";
 import type { TransactionFilters } from "../../types/schema";
 
@@ -22,6 +22,7 @@ export const FilterDrawer = ({
   onApplyFilters,
 }: FilterDrawerProps) => {
   const [localFilters, setLocalFilters] = useState<TransactionFilters>(filters);
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
 
   const presets = [
     { id: DateFilterPreset.TODAY, label: "Today" },
@@ -173,27 +174,81 @@ export const FilterDrawer = ({
                   <Select.Root
                     multiple
                     collection={transactionTypesFrameworks}
+                    value={selectedTypes}
+                    onValueChange={(e) => setSelectedTypes(e.value)}
                     size="sm"
                     width="320px"
                   >
                     <Select.HiddenSelect />
-                    <Select.Label>Transaction Type</Select.Label>
+                    {/* <Select.Label>Transaction Type</Select.Label> */}
                     <Select.Control>
                       <Select.Trigger>
-                        <Select.ValueText placeholder="Transaction Type" />
+                        <Select.ValueText pl={3} placeholder="Transaction Type" />
                       </Select.Trigger>
-                      <Select.IndicatorGroup>
+                      <Select.IndicatorGroup pr={3}>
                         <Select.Indicator />
                       </Select.IndicatorGroup>
                     </Select.Control>
-                    <Select.Content>
-                      {transactionTypesFrameworks.items.map((framework) => (
-                        <Select.Item item={framework} key={framework.value}>
-                          {framework.label}
-                          <Select.ItemIndicator />
-                        </Select.Item>
-                      ))}
-                    </Select.Content>
+                    <Select.Positioner>
+                      <Select.Content px={2} py={2}>
+                        {transactionTypesFrameworks.items.map((framework) => {
+                          const isSelected = selectedTypes.includes(framework.value);
+                          return (
+                            <Select.Item
+                              item={framework}
+                              key={framework.value}
+                              p={2.5}
+                              borderRadius="md"
+                            // bg='red'
+                            // asChild
+                            >
+                              {/* <Select.ItemIndicator>
+                                <Checkbox.Root
+                                  checked={selectedTypes.includes(framework.value)}
+                                  pointerEvents="none"
+                                  size="sm"
+                                >
+                                  <Checkbox.Control transition="all 0.15s ease-in-out" />
+                                </Checkbox.Root>
+                              </Select.ItemIndicator>
+                              {framework.label}
+                              <Select.ItemIndicator /> */}
+                              <Box
+                                display="flex"
+                                alignItems="center"
+                                // justifyContent="space-between"
+                                // px={3}
+                                // py={2}
+                                bg='purple.emphasized'
+                                // borderRadius="md"
+                                // cursor="pointer"
+                                // _hover={{ bg: "gray.100" }}
+                                flex={1}
+                              >
+                                {
+                                  !isSelected ? <Icon
+                                    as={Square}
+                                    color={"gray.400"}
+                                    cursor="pointer"
+                                    boxSize={4}
+                                  /> : <Checkbox.Root
+                                    checked={true}
+                                    // pointerEvents="inherit"
+                                    cursor="pointer"
+                                    size="sm"
+                                  >
+                                    <Checkbox.Control transition="all 0.15s ease-in-out" />
+                                  </Checkbox.Root>
+                                }
+                                <Text pl={2.5} fontSize="sm" color="gray.800">
+                                  {framework.label}
+                                </Text>
+                              </Box>
+                            </Select.Item>
+                          )
+                        })}
+                      </Select.Content>
+                    </Select.Positioner>
                   </Select.Root>
                 </Box>
               </Box>
