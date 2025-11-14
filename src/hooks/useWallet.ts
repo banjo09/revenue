@@ -7,6 +7,6 @@ export const useWallet = () => {
     queryKey: ["wallet"],
     queryFn: api.getWallet,
     placeholderData: mockWallet,
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 5 * 60 * 1000,
   });
 };

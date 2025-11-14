@@ -7,6 +7,6 @@ export const useUser = () => {
     queryKey: ["user"],
     queryFn: api.getUser,
     placeholderData: mockUser,
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 5 * 60 * 1000,
   });
 };

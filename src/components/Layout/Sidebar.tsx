@@ -1,4 +1,4 @@
-import { Box, IconButton, Icon, Tooltip as ChakraTooltip, Image } from "@chakra-ui/react";
+import { Box, Tooltip as ChakraTooltip, Image } from "@chakra-ui/react";
 import { Link, FileText, FolderOpenDot, Users } from "lucide-react";
 
 export const Sidebar = () => {
@@ -17,7 +17,6 @@ export const Sidebar = () => {
       transform="translateY(-50%)"
       zIndex={100}
       bg="white"
-      // borderRadius="0 12px 12px 0"
       borderRadius="18px"
       boxShadow="0 1px 3px 0.3px rgba(0, 0, 0, 0.1), 0 1px 3px -2px rgba(0, 0, 0, 0.05)"
       py={1}

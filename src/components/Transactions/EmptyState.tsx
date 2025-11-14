@@ -24,6 +24,7 @@ export const EmptyState = ({ onClearFilter }: EmptyStateProps) => {
           </ChakraEmptyState.Description>
           <Button
             mt={6}
+            px={6}
             variant="outline"
             borderRadius="full"
             onClick={onClearFilter}

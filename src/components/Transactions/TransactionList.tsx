@@ -1,6 +1,6 @@
-import { Box, Heading, Text, Button, Badge, Icon } from "@chakra-ui/react";
-import { Filter, HardDriveDownload, ChevronDown, Download } from "lucide-react";
 import { useState, useMemo } from "react";
+import { Box, Heading, Text, Button, Badge, Icon } from "@chakra-ui/react";
+import { ChevronDown, Download } from "lucide-react";
 import { TransactionItem } from "./TransactionItem";
 import { FilterDrawer } from "./FilterDrawer";
 import { EmptyState } from "./EmptyState";
@@ -69,11 +69,9 @@ export const TransactionList = ({ transactions }: TransactionListProps) => {
 
   return (
     <Box>
-      {/* Header */}
       <Box
         display="flex"
         justifyContent="space-between"
-        // alignItems="flex-start"
         alignItems="center"
         mb={1}
         pb={3}

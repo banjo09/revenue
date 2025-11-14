@@ -18,7 +18,6 @@ export const RevenueChart = () => {
   }));
 
   return (
-    // <Box mb={8} bg="white" borderRadius="12px" p={0} overflow="hidden">
     <Box mb={8} borderRadius="12px" p={0} overflow="hidden">
       <Box px={6} pt={6} pb={2}>
         {/* <ResponsiveContainer width="100%" height={280}> */}

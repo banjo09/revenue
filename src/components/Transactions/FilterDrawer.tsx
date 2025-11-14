@@ -4,7 +4,7 @@ import {
   Text, Checkbox, Input, Icon,
   Select, createListCollection, Portal
 } from "@chakra-ui/react";
-import { X, SquareCheck, Square } from "lucide-react";
+import { X, Square } from "lucide-react";
 import { TransactionType, TransactionStatus, DateFilterPreset } from "../../types/enums";
 import type { TransactionFilters } from "../../types/schema";
 
@@ -44,15 +44,6 @@ export const FilterDrawer = ({
       { value: TransactionType.REFER_AND_EARN, label: "Refer & Earn" },
     ],
   })
-
-  const transactionTypes = [
-    { id: TransactionType.STORE_TRANSACTIONS, label: "Store Transactions" },
-    { id: TransactionType.GET_TIPPED, label: "Get Tipped" },
-    { id: TransactionType.WITHDRAWALS, label: "Withdrawals" },
-    { id: TransactionType.CHARGEBACKS, label: "Chargebacks" },
-    { id: TransactionType.CASHBACKS, label: "Cashbacks" },
-    { id: TransactionType.REFER_AND_EARN, label: "Refer & Earn" },
-  ];
 
   const transactionStatusesFrameworks = createListCollection({
     items: [
@@ -117,21 +108,15 @@ export const FilterDrawer = ({
               {/* Quick Filters */}
               <Box mb={6} mt={5}>
                 <Box
-                  // display="flex" justifyContent={'space-between'} flexWrap="wrap"
                   display="flex"
                   overflowX="auto"
                   gap={3}
                   py={2}
                   px={1}
                   css={{
-                    scrollbarWidth: "none", // Hide scrollbar (Firefox)
-                    msOverflowStyle: "none", // Hide scrollbar (IE)
+                    scrollbarWidth: "none",
+                    msOverflowStyle: "none",
                   }}
-                // sx={{
-                //   "&::-webkit-scrollbar": {
-                //     display: "none", // Hide scrollbar (Chrome/Safari)
-                //   },
-                // }}
                 >
                   {presets.map((preset) => (
                     <Button
@@ -335,17 +320,6 @@ export const FilterDrawer = ({
                       </Select.Content>
                     </Select.Positioner>
                   </Select.Root>
-                  {/* {transactionStatusesFrameworks.map((status) => (
-                    <Checkbox.Root
-                      key={status.id}
-                      checked={localFilters.transactionStatuses.includes(status.id)}
-                      onCheckedChange={() => handleStatusToggle(status.id)}
-                      size="md"
-                    >
-                      <Checkbox.Control />
-                      <Checkbox.Label fontSize="sm">{status.label}</Checkbox.Label>
-                    </Checkbox.Root>
-                  ))} */}
                 </Box>
               </Box>
             </Drawer.Body>
@@ -379,27 +353,3 @@ export const FilterDrawer = ({
   );
 };
 
-
-
-
-
-
-
-
-
-
-
-
-// {transactionTypes.map((type) => (
-//   <>
-//     <Checkbox.Root
-//     key={type.id}
-//     checked={localFilters.transactionTypes.includes(type.id)}
-//     onCheckedChange={() => handleTypeToggle(type.id)}
-//     size="md"
-//   >
-//     <Checkbox.Control />
-//     <Checkbox.Label fontSize="sm">{type.label}</Checkbox.Label>
-//   </Checkbox.Root>
-//   </>
-// ))}
