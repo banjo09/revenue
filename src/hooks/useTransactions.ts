@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "../services/api";
-import { mockTransactions } from "../data/dashboardMockData";
 
 export const useTransactions = () => {
   return useQuery({

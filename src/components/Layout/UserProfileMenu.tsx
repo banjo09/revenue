@@ -1,6 +1,6 @@
-import { Menu, Portal, Box, Text, Icon, Avatar, Separator } from "@chakra-ui/react";
+import { Menu, Portal, Box, Text, Icon, Avatar } from "@chakra-ui/react";
 import {
-  Settings, ShoppingCart, Gift, Puzzle,
+  Settings, Gift,
   Bug, ArrowDownWideNarrow, LogOut, ScrollText, LayoutGrid
 } from "lucide-react";
 import type { User } from "../../types/schema";

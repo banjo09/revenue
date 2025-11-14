@@ -1,5 +1,5 @@
-import { Box, Text, Badge, Circle, Icon } from "@chakra-ui/react";
-import { CheckCheck, MoveDiagonal, MoveDownLeft, MoveUpRight } from "lucide-react";
+import { Box, Text, Circle, Icon } from "@chakra-ui/react";
+import { MoveDownLeft, MoveUpRight } from "lucide-react";
 import { formatCurrency, formatDate } from "../../utils/formatters";
 import { TransactionStatus, TransactionType } from "../../types/enums";
 import type { Transaction } from "../../types/schema";
@@ -9,10 +9,7 @@ interface TransactionItemProps {
 }
 
 export const TransactionItem = ({ transaction }: TransactionItemProps) => {
-  // console.log('transaction', transaction)
   const isSuccessful = transaction.status === TransactionStatus.SUCCESSFUL;
-  const isPending = transaction.status === TransactionStatus.PENDING;
-  const withdrawalType = transaction.type === TransactionType.WITHDRAWAL;
   const depositType = transaction.type === TransactionType.DEPOSIT;
 
 
@@ -22,8 +19,6 @@ export const TransactionItem = ({ transaction }: TransactionItemProps) => {
       alignItems="center"
       justifyContent="space-between"
       py={5}
-      // borderBottom="1px solid"
-      // borderColor="gray.100"
       _hover={{ bg: "gray.25" }}
       transition="background 0.15s"
       px={0}

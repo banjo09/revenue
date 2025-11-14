@@ -1,9 +1,9 @@
 import {
-  Box, Button, Text, IconButton, Avatar, Menu, Icon,
-  Image, CloseButton, Drawer, Portal, Separator
+  Box, Button, IconButton, Avatar, Menu, Icon,
+  Image, Drawer, Portal
 } from "@chakra-ui/react";
 import {
-  House, ChartColumnIncreasing, WalletMinimal, MessageSquareText, Banknote,
+  House, MessageSquareText, Banknote,
   Users, LayoutGrid, Bell, ChevronDown, Menu as MenuIcon, SquareKanban
 } from "lucide-react";
 import { useState } from "react";
@@ -29,7 +29,6 @@ export const Header = ({ user }: HeaderProps) => {
   const [activeTab, setActiveTab] = useState<NavTab>(NavTab.REVENUE);
   const [isAppsOpen, setIsAppsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
     <Box
@@ -49,17 +48,11 @@ export const Header = ({ user }: HeaderProps) => {
         display="flex"
         alignItems="center"
         justifyContent="space-between"
-      // borderRadius='2rem'
-      // boxShadow="md"
       >
         {/* Logo */}
         <Drawer.Root placement={'start'}>
           <Drawer.Trigger asChild>
-            {/* <Button variant="outline" size="sm">
-              Open Drawer
-            </Button> */}
             <Box
-              // mr={{ base: 4, md: 6, lg: 8 }}
               pl={{ base: 4, md: 6, lg: 8 }}
               flexShrink={0}
             >
@@ -72,7 +65,7 @@ export const Header = ({ user }: HeaderProps) => {
             </Box>
           </Drawer.Trigger>
           <Portal>
-            <NavItemMenu user={user} />
+            <NavItemMenu />
             {/* <Drawer.Backdrop />
             <Drawer.Positioner>
               <Drawer.Content>
@@ -159,16 +152,9 @@ export const Header = ({ user }: HeaderProps) => {
                       fontSize={{ md: "xs", lg: "sm" }}
                       onClick={() => setActiveTab(tab.id)}
                     >
-                      {/* <Icon mr={{ md: 0.5, lg: 2 }}>
-                        <tab.icon
-                          size={16}
-                        // size={{ md: 0.5, lg: 2 }}
-                        />
-                      </Icon> */}
 
                       <Icon
                         as={tab.icon}
-                        // color="gray.600"
                         color={activeTab === tab.id ? "white" : "gray.600"}
                         boxSize={{ md: '14px', lg: '16px' }}
                         mr={{ md: 0.1, lg: 0.25 }}
@@ -209,7 +195,6 @@ export const Header = ({ user }: HeaderProps) => {
                   <Icon
                     as={tab.icon}
                     boxSize={{ md: '14px', lg: '16px' }}
-                    // color="gray.600"
                     color={activeTab === tab.id ? "white" : "gray.600"}
                     mr={{ md: 0.1, lg: 0.25 }}
                     strokeWidth={1.5}
@@ -229,7 +214,6 @@ export const Header = ({ user }: HeaderProps) => {
             aria-label="Notifications"
             size="sm"
             borderRadius="full"
-            // display={{ base: "none", md: "flex" }}
             display={"flex"}
           >
             <Icon>
@@ -243,7 +227,6 @@ export const Header = ({ user }: HeaderProps) => {
             aria-label="Messages"
             size="sm"
             borderRadius="full"
-            // display={{ base: "none", md: "flex" }}
             display={"flex"}
           >
             <Icon>
@@ -283,26 +266,14 @@ export const Header = ({ user }: HeaderProps) => {
                     <Avatar.Fallback>{user?.avatar || "OJ"}</Avatar.Fallback>
                   </Avatar.Root>
                   <Box
-                    // variant="ghost"
-                    // aria-label="Menu"
-                    // size="xs"
-                    // borderRadius="full"
                     px={1.5}
                   >
                     <Icon>
                       <MenuIcon
-                        // size={20}
                         size={'12px'} strokeWidth={1.0}
                       />
                     </Icon>
                   </Box>
-                  {/* <Icon
-                    as={MenuIcon}
-                    boxSize="12px"
-                    strokeWidth={1.0}
-                    ml={1}
-                    color="gray.600"
-                  /> */}
                 </Box>
               </Menu.Trigger>
               <UserProfileMenu user={user} />

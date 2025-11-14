@@ -53,23 +53,23 @@ export const FilterDrawer = ({
     ],
   })
 
-  const handleTypeToggle = (type: TransactionType) => {
-    setLocalFilters((prev) => ({
-      ...prev,
-      transactionTypes: prev.transactionTypes.includes(type)
-        ? prev.transactionTypes.filter((t) => t !== type)
-        : [...prev.transactionTypes, type],
-    }));
-  };
+  // const handleTypeToggle = (type: TransactionType) => {
+  //   setLocalFilters((prev) => ({
+  //     ...prev,
+  //     transactionTypes: prev.transactionTypes.includes(type)
+  //       ? prev.transactionTypes.filter((t) => t !== type)
+  //       : [...prev.transactionTypes, type],
+  //   }));
+  // };
 
-  const handleStatusToggle = (status: TransactionStatus) => {
-    setLocalFilters((prev) => ({
-      ...prev,
-      transactionStatuses: prev.transactionStatuses.includes(status)
-        ? prev.transactionStatuses.filter((s) => s !== status)
-        : [...prev.transactionStatuses, status],
-    }));
-  };
+  // const handleStatusToggle = (status: TransactionStatus) => {
+  //   setLocalFilters((prev) => ({
+  //     ...prev,
+  //     transactionStatuses: prev.transactionStatuses.includes(status)
+  //       ? prev.transactionStatuses.filter((s) => s !== status)
+  //       : [...prev.transactionStatuses, status],
+  //   }));
+  // };
 
   const handleClear = () => {
     setLocalFilters({

@@ -1,32 +1,15 @@
 import { useState } from "react";
 import { Menu, Portal, Box, Text, Icon, Image } from "@chakra-ui/react";
-import { keyframes } from "@emotion/react";
-import { Link, ShoppingBag, FolderOpenDot, Receipt, CalendarCheck2, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { mockApps } from "../../data/dashboardMockData";
 
-const iconMap = {
-  link: Link,
-  store: ShoppingBag,
-  media: FolderOpenDot,
-  invoice: Receipt,
-  calendar: CalendarCheck2,
-};
-
-// A "jump" animation
-const jumpBack = keyframes`
-  0% { transform: translateX(0); }
-  40% { transform: translateX(-6px) scale(1.02); }
-  70% { transform: translateX(-3px) scale(0.98); }
-  100% { transform: translateX(0); }
-`;
-const dance = keyframes`
-  0% { transform: translateY(0) rotate(0deg); }
-  20% { transform: translateY(-4px) rotate(-3deg); }
-  40% { transform: translateY(4px) rotate(3deg); }
-  60% { transform: translateY(-2px) rotate(-2deg); }
-  80% { transform: translateY(2px) rotate(2deg); }
-  100% { transform: translateY(0) rotate(0deg); }
-`;
+// const iconMap = {
+//   link: Link,
+//   store: ShoppingBag,
+//   media: FolderOpenDot,
+//   invoice: Receipt,
+//   calendar: CalendarCheck2,
+// };
 
 export const AppsDropdown = () => {
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -41,7 +24,7 @@ export const AppsDropdown = () => {
           borderRadius='1rem'
         >
           {mockApps.map((app) => {
-            const IconComponent = iconMap[app.icon as keyof typeof iconMap] || Link;
+            // const IconComponent = iconMap[app.icon as keyof typeof iconMap] || Link;
             const isActive = activeId === app.id;
 
             return (

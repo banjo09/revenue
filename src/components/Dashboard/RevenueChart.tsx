@@ -2,8 +2,8 @@ import { Box, Text } from "@chakra-ui/react";
 import {
   LineChart,
   Line,
-  XAxis,
-  YAxis,
+  // XAxis,
+  // YAxis,
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,

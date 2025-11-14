@@ -2,15 +2,9 @@ import {
   Drawer, Portal, Box, Text, Icon, Separator,
   CloseButton, Image, Button
 } from "@chakra-ui/react";
-import { Settings, ShoppingCart, Gift, Puzzle, Bug, ArrowDownWideNarrow, LogOut } from "lucide-react";
-import type { User } from "../../types/schema";
 import { tabs } from "./Header";
 
-interface NavItemMenuProps {
-  user: User | null;
-}
-
-export const NavItemMenu = ({ user }: NavItemMenuProps) => {
+export const NavItemMenu = () => {
 
   return (
     <Portal>
@@ -21,7 +15,6 @@ export const NavItemMenu = ({ user }: NavItemMenuProps) => {
             {(store) => (
               <Drawer.Body pt="0" >
                 <Box
-                  // ml={{ base: 4, md: 6, lg: 8 }} 
                   ml={6}
                   mt={2}
                   p={2}
